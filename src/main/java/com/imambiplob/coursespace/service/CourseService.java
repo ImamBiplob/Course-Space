@@ -5,6 +5,7 @@ import com.imambiplob.coursespace.repository.CourseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -15,6 +16,10 @@ public class CourseService {
     }
 
     public Course addCourse(Course course) {
+        Optional<Course> course1 = courseRepository.findByCourseCode(course.getCourseCode());
+        if(course1.isPresent()) {
+            return new Course();
+        }
         return courseRepository.save(course);
     }
 

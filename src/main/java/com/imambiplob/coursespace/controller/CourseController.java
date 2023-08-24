@@ -2,6 +2,8 @@ package com.imambiplob.coursespace.controller;
 
 import com.imambiplob.coursespace.entity.Course;
 import com.imambiplob.coursespace.service.CourseService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +18,18 @@ public class CourseController {
     }
 
     @PostMapping
-    public Course addCourse(@RequestBody Course course) {
-        return courseService.addCourse(course);
+    public ResponseEntity<?> addCourse(@RequestBody Course course) {
+        Course course1 = courseService.addCourse(course);
+        if(course1.getId()>0) {
+            return new ResponseEntity<>(course1, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Course Already In Listed",HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping
     public List<Course> getAllCourse() {
         return courseService.getAllCourses();
     }
+
 
 }

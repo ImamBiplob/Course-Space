@@ -4,6 +4,8 @@ import com.imambiplob.coursespace.dto.Advisor;
 import com.imambiplob.coursespace.dto.UserProfile;
 import com.imambiplob.coursespace.entity.User;
 import com.imambiplob.coursespace.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,29 +28,29 @@ public class UserService {
         return userProfile;
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public ResponseEntity<?> saveUser(User user) {
+        return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
     }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User getUser(long id) {
+    public ResponseEntity<?> getUser(long id) {
         User user = null;
         if(userRepository.findById(id).isPresent())
             user = userRepository.findById(id).get();
-        return user;
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
-    public UserProfile addAdvisor(Advisor advisor) {
+    public ResponseEntity<?> addAdvisor(Advisor advisor) {
         User user = new User();
         user.setRole("Advisor");
         user.setName(advisor.getName());
         user.setPassword(advisor.getPassword());
         user.setEmail(advisor.getEmail());
 
-        return convertUserToUserProfile(userRepository.save(user));
+        return new ResponseEntity<>(convertUserToUserProfile(userRepository.save(user)),HttpStatus.OK);
     }
 
     public List<UserProfile> getAdvisors() {
@@ -57,11 +59,11 @@ public class UserService {
                 .map(UserService::convertUserToUserProfile).toList();
     }
 
-    public UserProfile getAdvisor(long id) {
+    public ResponseEntity<?> getAdvisor(long id) {
         UserProfile userProfile = null;
         if(userRepository.findById(id).isPresent())
             userProfile = convertUserToUserProfile(userRepository.findById(id).get());
 
-        return userProfile;
+        return new ResponseEntity<>( userProfile,HttpStatus.OK);
     }
 }

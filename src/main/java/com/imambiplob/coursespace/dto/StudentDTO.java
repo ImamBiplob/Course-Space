@@ -19,6 +19,7 @@ public class StudentDTO {
     private String name;
     private String email;
     private String password;
+    private String address;
     private List<Long> courseId;
 
     public static StudentDTO form(Student student){

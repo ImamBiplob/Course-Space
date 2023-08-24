@@ -21,6 +21,7 @@ public class Student {
     private User user;
     private LocalDate dob;
     private String phone;
+    private String address;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(name = "student_semesters",
             joinColumns = @JoinColumn(name = "student_id"),

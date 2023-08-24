@@ -4,6 +4,7 @@ import com.imambiplob.coursespace.dto.Advisor;
 import com.imambiplob.coursespace.dto.UserProfile;
 import com.imambiplob.coursespace.entity.User;
 import com.imambiplob.coursespace.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +19,12 @@ public class UserController {
     }
 
     @PostMapping("/admins")
-    public User addUser(@RequestBody User user) {
+    public ResponseEntity<?> addUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
 
     @PostMapping("/addAdvisor")
-    public UserProfile addAdvisor(@RequestBody Advisor advisor) {
+    public ResponseEntity<?> addAdvisor(@RequestBody Advisor advisor) {
         return userService.addAdvisor(advisor);
     }
 
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/getAdvisor/{id}")
-    public UserProfile getAdvisor(@PathVariable long id) {
+    public ResponseEntity<?> getAdvisor(@PathVariable long id) {
         return userService.getAdvisor(id);
     }
 
@@ -43,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable long id) {
+    public ResponseEntity<?> getUser(@PathVariable long id) {
         return userService.getUser(id);
     }
 
