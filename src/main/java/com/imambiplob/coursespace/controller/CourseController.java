@@ -25,8 +25,4 @@ public class CourseController {
         return courseService.getAllCourses();
     }
 
-    @GetMapping("/{id}")
-    public Course getCourse(@PathVariable long id) {
-        return courseService.getCourse(id);
-    }
 }
