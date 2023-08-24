@@ -16,7 +16,7 @@ public class Semester {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String semesterName;
-    private int semesterFee;
+    private String semesterFee;
     private double creditLimit;
     @ManyToMany
     @JoinTable(name = "semester_courses",

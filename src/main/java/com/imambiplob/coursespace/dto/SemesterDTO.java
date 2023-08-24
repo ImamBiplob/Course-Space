@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SemesterDTO {
     private String semesterName;
-    private int semesterFee;
+    private String semesterFee;
     private double creditLimit;
 }
