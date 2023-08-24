@@ -26,10 +26,10 @@ public class CourseService {
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
-
+/*
     public Course getCourse(long id) {
         if(courseRepository.findById(id).isPresent())
             return courseRepository.findById(id).get();
         return null;
-    }
+    }*/
 }

@@ -37,9 +37,5 @@ public class SemesterController {
     @PutMapping("/{id}")
     public ResponseEntity<?> addCoursesToSemester(@PathVariable long id, @RequestBody List<String > courseCode){
         return new ResponseEntity<>(semesterService.addCoursesToSemester(id,courseCode), HttpStatus.OK);
-
-        /* Semester semester = semesterService.getSemester(id);
-        semester.
-*/
     }
 }
